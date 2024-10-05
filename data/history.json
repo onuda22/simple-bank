@@ -12,5 +12,26 @@
     "action": "login",
     "details": "User logged in",
     "timestamp": "2024-10-05T22:57:36.990909053+07:00"
+  },
+  {
+    "id": "20241005235132",
+    "user_id": "C001",
+    "action": "login",
+    "details": "User logged in",
+    "timestamp": "2024-10-05T23:51:32.25176104+07:00"
+  },
+  {
+    "id": "20241005235311",
+    "user_id": "C001",
+    "action": "payment",
+    "details": "Payment made to merchant",
+    "timestamp": "2024-10-05T23:53:11.220774134+07:00"
+  },
+  {
+    "id": "20241005235432",
+    "user_id": "C001",
+    "action": "logout",
+    "details": "User logged out",
+    "timestamp": "2024-10-05T23:54:32.598887107+07:00"
   }
 ]

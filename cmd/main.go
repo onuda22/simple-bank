@@ -9,6 +9,8 @@ import (
 	"simple_bank/internal/api/handlers"
 	"simple_bank/internal/repository"
 	"simple_bank/internal/usecase"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -33,9 +35,16 @@ func main() {
 		log.Fatalf("Failed to initialize history repository: %v", err)
 	}
 
+	// Load environment variables from .env file
+	err = godotenv.Load() // Load variables from .env
+	if err != nil {
+		log.Fatal("Error loading .env file") // Log error if loading fails
+	}
+
+	// Retrieve the JWT_SECRET from the environment
 	jwtSecret := os.Getenv("JWT_SECRET")
 	if jwtSecret == "" {
-		log.Fatal("JWT_SECRET environment variable is not set")
+		log.Fatal("JWT_SECRET environment variable is not set") // Log if JWT_SECRET is empty
 	}
 
 	// Initialize use cases
