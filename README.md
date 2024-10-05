@@ -1,4 +1,6 @@
-# Bank API Project
+# Name : Oki Nurul Abada
+
+# Simple Bank API Project
 
 This project implements a simple bank API that allows customers to log in, make payments to merchants, and log out. It uses clean architecture principles and JWT for authentication.
 
