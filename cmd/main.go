@@ -36,15 +36,14 @@ func main() {
 	}
 
 	// Load environment variables from .env file
-	err = godotenv.Load() // Load variables from .env
+	err = godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file") // Log error if loading fails
+		log.Fatal("Error loading .env file")
 	}
 
-	// Retrieve the JWT_SECRET from the environment
 	jwtSecret := os.Getenv("JWT_SECRET")
 	if jwtSecret == "" {
-		log.Fatal("JWT_SECRET environment variable is not set") // Log if JWT_SECRET is empty
+		log.Fatal("JWT_SECRET environment variable is not set")
 	}
 
 	// Initialize use cases
