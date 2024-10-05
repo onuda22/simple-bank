@@ -1,0 +1,17 @@
+[
+  {
+    "id": "M001",
+    "name": "Tech Store",
+    "balance": 5000.0
+  },
+  {
+    "id": "M002",
+    "name": "Grocery Market",
+    "balance": 0.0
+  },
+  {
+    "id": "M003",
+    "name": "Book Haven",
+    "balance": 0.0
+  }
+]
