@@ -49,10 +49,10 @@ project/
    go mod tidy
    ```
 
-3. Set up the JWT secret:
+3. Set up the JWT secret on .env file:
 
    ```
-   export JWT_SECRET=your_secret_key_here
+   JWT_SECRET=your_secret_key_here
    ```
 
 4. Run the application:
