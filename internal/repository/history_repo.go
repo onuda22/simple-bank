@@ -34,7 +34,6 @@ func (r *HistoryRepository) Add(entry domain.History) error {
 
 	r.history = append(r.history, entry)
 
-	// Save to file
 	file, err := json.MarshalIndent(r.history, "", "  ")
 	if err != nil {
 		return err

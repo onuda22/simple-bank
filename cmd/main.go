@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"simple_bank/internal/api"
 	"simple_bank/internal/api/handlers"
@@ -32,8 +33,13 @@ func main() {
 		log.Fatalf("Failed to initialize history repository: %v", err)
 	}
 
+	jwtSecret := os.Getenv("JWT_SECRET")
+	if jwtSecret == "" {
+		log.Fatal("JWT_SECRET environment variable is not set")
+	}
+
 	// Initialize use cases
-	loginUseCase := usecase.NewLoginUseCase(customerRepo, historyRepo)
+	loginUseCase := usecase.NewLoginUseCase(customerRepo, historyRepo, jwtSecret)
 	paymentUseCase := usecase.NewPaymentUseCase(customerRepo, merchantRepo, paymentRepo, historyRepo)
 	logoutUseCase := usecase.NewLogoutUseCase(historyRepo)
 
@@ -43,7 +49,7 @@ func main() {
 	logoutHandler := handlers.NewLogoutHandler(logoutUseCase)
 
 	// Setup routes
-	router := api.SetupRoutes(loginHandler, paymentHandler, logoutHandler)
+	router := api.SetupRoutes(loginHandler, paymentHandler, logoutHandler, []byte(jwtSecret))
 
 	// Start server
 	log.Println("Starting server on :8080")

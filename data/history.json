@@ -5,5 +5,12 @@
     "action": "login",
     "details": "User logged in",
     "timestamp": "2024-10-05T21:28:46.220627119+07:00"
+  },
+  {
+    "id": "20241005225736",
+    "user_id": "C001",
+    "action": "login",
+    "details": "User logged in",
+    "timestamp": "2024-10-05T22:57:36.990909053+07:00"
   }
 ]

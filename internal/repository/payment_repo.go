@@ -34,7 +34,6 @@ func (r *PaymentRepository) Add(payment domain.Payment) error {
 
 	r.payments = append(r.payments, payment)
 
-	// Save to file
 	file, err := json.MarshalIndent(r.payments, "", "  ")
 	if err != nil {
 		return err

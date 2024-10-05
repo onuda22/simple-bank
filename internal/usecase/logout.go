@@ -18,7 +18,7 @@ func NewLogoutUseCase(historyRepo *repository.HistoryRepository) *LogoutUseCase 
 }
 
 func (u *LogoutUseCase) Logout(customerID string) error {
-	// Log logout activity
+
 	u.historyRepo.Add(domain.History{
 		ID:        generateID(),
 		UserID:    customerID,

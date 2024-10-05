@@ -52,7 +52,6 @@ func (r *MerchantRepository) Update(merchant domain.Merchant) error {
 
 	r.merchants[merchant.ID] = merchant
 
-	// Save to file (in a production environment, you'd use a database instead)
 	merchantsSlice := make([]domain.Merchant, 0, len(r.merchants))
 	for _, m := range r.merchants {
 		merchantsSlice = append(merchantsSlice, m)

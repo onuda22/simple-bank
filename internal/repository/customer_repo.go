@@ -65,7 +65,6 @@ func (r *CustomerRepository) Update(customer domain.Customer) error {
 
 	r.customers[customer.ID] = customer
 
-	// Save to file (in a production environment, you'd use a database instead)
 	customersSlice := make([]domain.Customer, 0, len(r.customers))
 	for _, c := range r.customers {
 		customersSlice = append(customersSlice, c)

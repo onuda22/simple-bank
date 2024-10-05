@@ -26,12 +26,12 @@ func (h *LoginHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	customer, err := h.loginUseCase.Login(req.Username, req.Password)
+	token, err := h.loginUseCase.Login(req.Username, req.Password)
 	if err != nil {
 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Login successful", "customer_id": customer.ID})
+	json.NewEncoder(w).Encode(map[string]string{"token": token})
 }

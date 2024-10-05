@@ -17,7 +17,6 @@ func NewPaymentHandler(paymentUseCase *usecase.PaymentUseCase) *PaymentHandler {
 
 func (h *PaymentHandler) MakePayment(w http.ResponseWriter, r *http.Request) {
 	var req struct {
-		CustomerID string  `json:"customer_id"`
 		MerchantID string  `json:"merchant_id"`
 		Amount     float64 `json:"amount"`
 	}
@@ -27,7 +26,13 @@ func (h *PaymentHandler) MakePayment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := h.paymentUseCase.MakePayment(req.CustomerID, req.MerchantID, req.Amount)
+	customerID := r.Header.Get("CustomerID")
+	if customerID == "" {
+		http.Error(w, "Customer ID not found", http.StatusBadRequest)
+		return
+	}
+
+	err := h.paymentUseCase.MakePayment(customerID, req.MerchantID, req.Amount)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

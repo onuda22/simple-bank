@@ -16,16 +16,13 @@ func NewLogoutHandler(logoutUseCase *usecase.LogoutUseCase) *LogoutHandler {
 }
 
 func (h *LogoutHandler) Logout(w http.ResponseWriter, r *http.Request) {
-	var req struct {
-		CustomerID string `json:"customer_id"`
-	}
-
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
+	customerID := r.Header.Get("CustomerID")
+	if customerID == "" {
+		http.Error(w, "Customer ID not found", http.StatusBadRequest)
 		return
 	}
 
-	err := h.logoutUseCase.Logout(req.CustomerID)
+	err := h.logoutUseCase.Logout(customerID)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
